@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ project_name }}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <!-- CSS -->
+    {{ CSS.push('css/bootstrap.css') }}
+    {{ CSS.push('css/bootstrap-responsive.css') }}
+    {% block extra_css %}{% endblock extra_css %}
+    {{ CSS.push('less/app.less') }}
+    {{ CSS.render('css/app.min.css') }}
+
+    <!-- JS -->
+        {{ JS.push('js/lib/jquery-1.8.3.js') }}
+    {{ JS.push('js/lib/modernizr.js') }}
+    {% block extra_head_js %}{% endblock extra_head_js %}
+
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+<body>
+        {% block outer_content %}
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+<!--          <div class="nav-collapse collapse"> -->
+            <ul class="nav">
+              <li><a href="http://caurs.org">Thing 1</a></li>
+              <li><a href="http://caurs.org">Thing 2</a></li>
+              <li><a href="http://caurs.org">Thing 3</a></li>
+            </ul>
+<!--          ></div> -->
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container the-goods">
+        <div class="row">
+            <div class="span8">
+                {% block content %}
+                <h1>{{ project_name }}</h1>
+                App content goes here.
+                {% endblock content %}
+            </div>
+        </div>
+
+        <div id="footer" class="row">
+            <div class="span12">
+                <ul class="bottomlist">
+                        <li><a href="http://www.caurs.org/">Copyright 2012 CAURS</a></li>
+                        <li><a href="http://www.caurs.org/">Some more fancy footer shit</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+        {% endblock outer_content %}
+
+        {{ JS.push('js/lib/html5.js') }}
+        {{ JS.push('js/lib/underscore.js') }}
+    {{ JS.push('js/lib/moment.js') }}
+    {{ JS.push('js/lib/bootstrap.js') }}
+</body>

@@ -5,6 +5,9 @@ import smtplib
 from email.mime.text import MIMEText
 import re
 from mimetypes import guess_type
+import envoy
+
+from render_utils import make_context
 
 @app.route('/')
 @app.route('/index')
@@ -34,7 +37,8 @@ def login():
     return render_template('login.html',
             title = 'Sign in',
             form = form,
-            providers = app.config['OPENID_PROVIDERS'])
+            providers = app.config['OPENID_PROVIDERS'],
+            **make_context())
 
 def send_mail(form):
     fp = open('reg_email.txt', 'rb')
@@ -69,7 +73,8 @@ def register():
         return redirect('/index')
     return render_template('register.html',
             title = 'Register',
-            form = form)
+            form = form,
+            **make_context())
 
 # Render LESS files on demand
 @app.route('/less/<string:filename>')
@@ -79,7 +84,6 @@ def _less(filename):
 
   r = envoy.run('node_modules/.bin/lessc -', data=less)
   return r.std_out, 200, { 'Content-Type': 'text/css' }
-
 
 # Render JST files on demand
 @app.route('/js/templates.js')
