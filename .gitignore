@@ -34,5 +34,8 @@ nosetests.xml
 .project
 .pydevproject
 
+# node
+node_modules
+
 #vi
 **.swp
