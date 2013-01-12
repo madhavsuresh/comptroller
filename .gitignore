@@ -15,7 +15,6 @@ var
 sdist
 develop-eggs
 .installed.cfg
-lib
 lib64
 
 # Installer logs
@@ -33,6 +32,9 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
- 
+
+# node
+node_modules
+
 #vi
- *.swp
+**.swp
