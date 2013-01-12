@@ -1,28 +1,30 @@
 from flask import render_template, flash, redirect
-from app import app 
+from app import app
 from forms import LoginForm,RegistrationForm
 import smtplib
 from email.mime.text import MIMEText
 import re
+from mimetypes import guess_type
 
 @app.route('/')
 @app.route('/index')
 def index():
     user = { 'nickname': 'Miguel' } # fake user
     posts = [ # fake array of posts
-            { 
-                'author': { 'nickname': 'John' }, 
-                'body': 'Beautiful day in Portland!' 
+            {
+                'author': { 'nickname': 'John' },
+                'body': 'Beautiful day in Portland!'
                 },
-            { 
-                'author': { 'nickname': 'Susan' }, 
-                'body': 'The Avengers movie was so cool!' 
+            {
+                'author': { 'nickname': 'Susan' },
+                'body': 'The Avengers movie was so cool!'
                 }
             ]
     return render_template('index.html',
                    title = 'Home',
                    user = user,
                    posts = posts)
+
 @app.route('/login',methods=['GET','POST'])
 def login():
     form = LoginForm()
@@ -44,17 +46,17 @@ def send_mail(form):
     re.sub('ABSTRACT_TITLE', form.abstracttitle.data, message)
     re.sub('ABSTRACT', form.abstract.data, message)
     re.sub('DISCIPLINE', form.discipline.data, message)
-		
+
     msg = MIMEText(message)
     fp.close()
-	
+
     msg['Subject'] = 'CAURS Registration'
     msg['From'] = 'me@example.com'
     msg['To'] = form.email.data
 
     s = smtplib.SMTP('localhost')
     s.sendmail(me, [you], msg.as_string())
-    s.quit()	
+    s.quit()
 
 @app.route('/register',methods=['GET','POST'])
 def register():
@@ -69,3 +71,24 @@ def register():
             title = 'Register',
             form = form)
 
+# Render LESS files on demand
+@app.route('/less/<string:filename>')
+def _less(filename):
+  with open('less/%s' % filename) as f:
+    less = f.read()
+
+  r = envoy.run('node_modules/.bin/lessc -', data=less)
+  return r.std_out, 200, { 'Content-Type': 'text/css' }
+
+
+# Render JST files on demand
+@app.route('/js/templates.js')
+def _templates_js():
+  r = envoy.run('node_modules/.bin/jst --template underscore jst')
+  return r.std_out, 200, { 'Content-Type': 'application/javascript' }
+
+# Serve arbitrary static files on demand
+@app.route('/<path:path>')
+def _img(path):
+  with open('www/%s' % path) as f:
+    return f.read(), 200, { 'Content-Type': guess_type(path)[0] }
