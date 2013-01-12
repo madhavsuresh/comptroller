@@ -1,27 +1,19 @@
-caurs registration and viewing platform
-===
+# caurs registration and viewing platform
 
-Setup
----
+## Setup
 
 You need node.js and node package manager (npm) for the static asset pipeline:
 
-```
-brew install node
-curl https://npmjs.org/install.sh | sh
-npm install less universal-jst
-```
+  brew install node
+  curl https://npmjs.org/install.sh | sh
+  npm install less universal-jst
 
 Then install project requirements:
 
-```
-pip install -r requirements.txt
-```
+  pip install -r requirements.txt
 
 And then run the server:
 
-```
-python run.py
-```
+  python run.py
 
 Then you can hit localhost:5000.
