@@ -4,9 +4,11 @@
 
 You need node.js and node package manager (npm) for the static asset pipeline:
 
+```bash
   brew install node
   curl https://npmjs.org/install.sh | sh
   npm install less universal-jst
+```
 
 Then install project requirements:
 
