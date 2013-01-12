@@ -35,7 +35,7 @@ def login():
             providers = app.config['OPENID_PROVIDERS'])
 
 def send_mail(form):
-    fp = open('reg_email.txt', 'rb')
+    fp = open(url_for('reg_email.txt'), 'rb')
     message = fp.read()
     re.sub('EMAIL', form.email.data, message)
     re.sub('INSTITUTION', form.institution.data, message)
