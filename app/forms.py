@@ -5,7 +5,7 @@ class LoginForm(Form):
     openid = TextField('openid', validators = [validators.required()])
     remember_me = BooleanField('remember_me', default = False)
 
-schools = [('depaul','Depaul University'),('iit','Illinois Institute of Technology'),
+schools = [('depaul','DePaul University'),('iit','Illinois Institute of Technology'),
         ('loyola','Loyola University Chicago'),('northwestern','Northwestern University'),
         ('uofc','University of Chicago'),('uic','University of Illinois at Chicago'),('other','Other')]
 
