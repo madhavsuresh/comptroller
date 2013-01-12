@@ -1,0 +1,10 @@
+Hello NAME,
+
+You have been registered at CAURS with the following information:
+	- EMAIL
+	- INSTITUTION
+	- MAJOR
+	- YEAR
+	- ABSTRACT_TITLE
+	- ABSTRACT
+	- DISCIPLINE
