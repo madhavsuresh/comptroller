@@ -57,15 +57,14 @@ def handle_form_data(register_dict):
 def get_by_regnum(regnum):
     row = Presenters.query.filter_by(reg_num = regnum).first()
     row_dict = dict((col, getattr(row, col)) for col in row.__table__.columns.keys())
-    return render_template('viewreg.html',info = row_dict, **make_context())
-
-    
-    
+    return render_template('viewreg.html',info = row_dict, **make_context())  
     
 
 @app.route('/register',methods=['GET','POST'])
 def register():
     form = RegistrationForm()
+    if app.config['TESTING']:
+        form = RegistrationForm(csrf_enabled=False)
     if form.validate_on_submit():
         handle_form_data(form_to_dict(form))
         flash('stuff' + form.name.data)

@@ -19,7 +19,7 @@ class ComptrollerTestCase(unittest.TestCase):
 
     def test_empty_db(self):
 	rv = self.app.get('/')
-	assert 'No entries here so far' in rv.data
+	assert 'caurs!!' in rv.data
 
 	 
     def register(self, uname, _email, inst, mjr, yr, abs_title, disc, abst): 
@@ -32,20 +32,19 @@ class ComptrollerTestCase(unittest.TestCase):
 		year=yr,
 		abstract_title=abs_title,
 		discipline=disc,
-		abstract=abst,))
+		abstract=abst,), follow_redirects=True)
 	return rv
 
     def test_register(self):
-	rv = self.register("test user", "testUserEmail@mailinator.com", "depaul",
-		"test major", 4, "test abstract title", "test academic discipline", "test abstract")
-	assert 'i\'m not sure what a successful case looks like, this will fail' in rv.data
+	rv = self.register("test user", "testUserEmail@mailinator.com", "depaul", "test major", 5, "test abstract title", "test academic discipline", "test abstract")
+	assert 'caurs!!' in rv.data
 
     def test_create_Duplicate_presenter(self):
 	self.register("test user", "testUserEmail@mailinator.com", "depaul",
 		"test major", 4, "test abstract title", "test academic discipline", "test abstract")
 	rv = self.register("test user", "testUserEmail@mailinator.com", "depaul",
 		"test major", 4, "test abstract title", "test academic discipline", "test abstract")
-	assert 'that user already exists' in rv.data
+	assert 'this shit be failing' in rv.data
 
 
 if __name__ == '__main__':
