@@ -1,19 +1,19 @@
 from flask import render_template, flash, redirect
 from app import app 
 from app.database import db_session
-from app.models import Presenters
-from app import app
 from forms import LoginForm,RegistrationForm
-import smtplib
-from email.mime.text import MIMEText
-import re
+from app.models import Presenters
+from toolkit import handle_email, rand_gen
 from mimetypes import guess_type
 import envoy
-from render_utils import make_context
+
 
 @app.teardown_request
 def shutdown_session(exception=None):
     db_session.remove()
+
+
+from render_utils import make_context
 
 @app.route('/')
 @app.route('/index')
@@ -32,27 +32,6 @@ def login():
             providers = app.config['OPENID_PROVIDERS'],
             **make_context())
 
-def send_mail(form):
-    fp = open('reg_email.txt', 'rb')
-    message = fp.read()
-    re.sub('EMAIL', form.email.data, message)
-    re.sub('INSTITUTION', form.institution.data, message)
-    re.sub('MAJOR', form.major.data, message)
-    re.sub('YEAR', form.year.data, message)
-    re.sub('ABSTRACT_TITLE', form.abstracttitle.data, message)
-    re.sub('ABSTRACT', form.abstract.data, message)
-    re.sub('DISCIPLINE', form.discipline.data, message)
-
-    msg = MIMEText(message)
-    fp.close()
-
-    msg['Subject'] = 'CAURS Registration'
-    msg['From'] = 'me@example.com'
-    msg['To'] = form.email.data
-
-    s = smtplib.SMTP('localhost')
-    s.sendmail(me, [you], msg.as_string())
-    s.quit()
 
 def form_to_dict(form):
     ret = {}
@@ -67,9 +46,23 @@ def form_to_dict(form):
     return ret
 
 def handle_form_data(register_dict):
+    reg_num = rand_gen()
+    register_dict['reg_num'] = reg_num
     p = Presenters(arg_dict=register_dict)
+    handle_email(register_dict['email'],register_dict)
     db_session.add(p)
     db_session.commit()
+
+
+@app.route('/view/<regnum>',methods=['GET','POST'])
+def get_by_regnum(regnum):
+    row = Presenters.query.filter_by(reg_num = regnum).first()
+    row_dict = dict((col, getattr(row, col)) for col in row.__table__.columns.keys())
+    return render_template('viewreg.html',info = row_dict, **make_context())
+
+    
+    
+    
 
 @app.route('/register',methods=['GET','POST'])
 def register():

@@ -19,10 +19,11 @@ class Presenters(Base):
     def __init__(self,name=None,email=None,
                 institution=None,major=None,year=None,title=None,
                 abstract_title=None, discipline=None,abstract=None,
-                arg_dict=None):
+                reg_num = None, arg_dict=None):
 
         if arg_dict:
             self.name = arg_dict['name']
+            self.reg_num = arg_dict['reg_num']
             self.email = arg_dict['email']
             self.institution = arg_dict['institution']
             self.major = arg_dict['major']
@@ -32,6 +33,7 @@ class Presenters(Base):
             self.abstract = arg_dict['abstract']
         else:
             self.name = name
+            self.reg_num = reg_num
             self.email = email
             self.institution = institution
             self.major = major
