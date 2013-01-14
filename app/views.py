@@ -32,7 +32,6 @@ def login():
             providers = app.config['OPENID_PROVIDERS'],
             **make_context())
 
-
 def form_to_dict(form):
     ret = {}
     ret['name'] = form.name.data
