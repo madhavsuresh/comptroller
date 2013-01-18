@@ -4,8 +4,15 @@
     <form action="" method="post" name="register">
         {{form.hidden_tag()}}
         <p>
-        Name: <br>
-        {{form.name(size=80)}}<br>
+        First Name: <br>
+        {{form.fname(size=80)}}<br>
+        {% for error in form.errors.name %}
+        <span style="color: red;">[{{error}}]</span>
+        <br>
+        {% endfor %}
+
+        Last Name: <br>
+        {{form.fname(size=80)}}<br>
         {% for error in form.errors.name %}
         <span style="color: red;">[{{error}}]</span>
         <br>
@@ -53,6 +60,9 @@
         {% for error in form.errors.discipline %}
         <span style="color: red;">[{{error}}]</span>
         {% endfor %} <br>
+        Biological Science Subfield: <br>
+        {{form.bio_subfield()}}
+
 
         Abstract: <br>
         {{form.abstract()}}<br>
