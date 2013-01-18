@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect
-from app import app 
+from app import app
 from app.database import db_session
 from forms import LoginForm,RegistrationForm
 from app.models import Presenters
@@ -57,8 +57,7 @@ def handle_form_data(register_dict):
 def get_by_regnum(regnum):
     row = Presenters.query.filter_by(reg_num = regnum).first()
     row_dict = dict((col, getattr(row, col)) for col in row.__table__.columns.keys())
-    return render_template('viewreg.html',info = row_dict, **make_context())  
-    
+    return render_template('viewreg.html',info = row_dict, **make_context())
 
 @app.route('/register',methods=['GET','POST'])
 def register():
