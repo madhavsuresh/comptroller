@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "_base.html" %}
 {% block content %}
     <h1> Sign in </h1>
     <form action="" method="post" name="register">
@@ -16,14 +16,14 @@
         {% for error in form.errors.name %}
         <span style="color: red;">[{{error}}]</span>
         <br>
-        {% endfor %} 
+        {% endfor %}
 
         Email: <br>
         {{form.email(size=80)}}<br>
         {% for error in form.errors.email %}
         <span style="color: red;">[{{error}}]</span>
         <br>
-        {% endfor %} 
+        {% endfor %}
 
         Confirm Email: <br>
         {{form.confirm_email(size=80)}}<br>
