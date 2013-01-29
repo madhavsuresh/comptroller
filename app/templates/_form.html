@@ -34,31 +34,70 @@
     <span style="color: red;">[{{error}}]</span>
     {% endfor %} <br>
 
-    Major: <br>
-    {{form.major(size=80)}}<br>
-    {% for error in form.errors.major %}
-    <span style="color: red;">[{{error}}]</span>
-    {% endfor %} <br>
+    {% if title.split()[0] == 'Judge' %}
+      Academic Discipline: <br>
+      {# FIX THIS {{ form.academic_discipline(size=80) }}<br> #}
+      {{form.email(size=80)}}<br>
+      {% for error in form.errors.email %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
 
-    Year: <br>
-    {{form.year(size=4)}}<br>
-    {% for error in form.errors.year %}
-    <span style="color: red;">[{{error}}]</span>
-    {% endfor %} <br>
+      Other Disciplines: <br>
+      {# FIX THIS {{ form.other_disciplines(size=80) }}<br> #}
+      {{form.email(size=80)}}<br>
+      {% for error in form.errors.email %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
 
-    Discipline: <br>
-    {{form.discipline()}}<br>
-    {% for error in form.errors.discipline %}
-    <span style="color: red;">[{{error}}]</span>
-    {% endfor %} <br>
-    Biological Science Subfield: <br>
-    {{form.bio_subfield()}}
+      Preferred Poster Judging Session: <br>
+      {# FIX THIS {{ form.poster_session_pref(size=80) }}<br> #}
+      {{form.institution()}}<br>
+      {% for error in form.errors.Institution %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
 
-    Abstract Title: <br>
-    {{form.abstract_title(size=100)}}<br>
-    {% for error in form.errors.abstract_title %}
-    <span style="color: red;">[{{error}}]</span>
-    {% endfor %} <br>
+      Meal Attendance: <br>
+      {# FIX THIS {{ form.meals(size=80) }}<br> #}
+      {{form.institution()}}<br>
+      {% for error in form.errors.Institution %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
+
+      Other Requestions / Misc: <br>
+      {# FIX THIS {{ form.other_disciplines(size=80) }}<br> #}
+      {{form.email}}<br>
+      {% for error in form.errors.email %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
+    {% endif %}
+
+    {% if title.split()[0] == 'Student' %}
+      Major: <br>
+      {{form.major(size=80)}}<br>
+      {% for error in form.errors.major %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
+
+      Graduation Year: <br>
+      {{form.year(size=4)}}<br>
+      {% for error in form.errors.year %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
+
+      Discipline: <br>
+      {{form.discipline()}}<br>
+      {% for error in form.errors.discipline %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
+      Biological Science Subfield: <br>
+      {{form.bio_subfield()}}
+
+      Abstract Title: <br>
+      {{form.abstract_title(size=100)}}<br>
+      {% for error in form.errors.abstract_title %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %} <br>
+    {% endif %}
 
     <p><input class="btn btn-inverse" type="submit" value="Register &rarr;"></p>
 </form>
