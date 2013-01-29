@@ -15,21 +15,46 @@ a:hover, a:active { color: #36c; }
     .nav > li.donate > a { font-weight: bold; color: #ccc; }
 }
 
-// Cube ad
-.adwrapper { zoom: 1; padding: 0 0 12px 0; }
-
-.sponsor300 {
-    overflow: hidden;
-    width: 300px;
-    margin: 0 auto;
-    
-    p { margin: 0; font-size: 10px; color: #333; }
-    p.right { margin-top: 4px; font-style: italic; float: right; }
-    p.left { float: left; margin-top: 4px; }
-}
-
 // Content
 .container.the-goods { margin-top:60px; }
+
+.intro {
+  margin-bottom: 40px;
+  .role {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+}
+
+.logo {
+  max-height: 25px;
+  display: inline-block;
+}
+
+.details {
+  .date {
+  }
+
+  .location {
+  }
+
+  a {
+    display: inline-block;
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .map {
+    float: right;
+    margin-top: 20px;
+    display: inline-block;
+    img {
+      border-radius: 1000px;
+      max-width: 200px;
+      &:hover { opacity: 0.5; }
+    }
+  }
+}
 
 // Footer
 #footer ul.bottomlist {

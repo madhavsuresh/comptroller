@@ -18,7 +18,7 @@ from render_utils import make_context
 @app.route('/')
 @app.route('/index')
 def index():
-    return 'caurs!!'
+    return render_template('landing.html', **make_context())
 
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -59,8 +59,8 @@ def get_by_regnum(regnum):
     row_dict = dict((col, getattr(row, col)) for col in row.__table__.columns.keys())
     return render_template('viewreg.html',info = row_dict, **make_context())
 
-@app.route('/register',methods=['GET','POST'])
-def register():
+@app.route('/student',methods=['GET','POST'])
+def register_student():
     form = RegistrationForm()
     if app.config['TESTING']:
         form = RegistrationForm(csrf_enabled=False)
@@ -69,7 +69,21 @@ def register():
         flash('stuff' + form.name.data)
         return redirect('/index')
     return render_template('register.html',
-            title = 'Register',
+            title = 'Student Presenter Registration',
+            form = form,
+            **make_context())
+
+@app.route('/judge',methods=['GET','POST'])
+def register_judge():
+    form = RegistrationForm()
+    if app.config['TESTING']:
+        form = RegistrationForm(csrf_enabled=False)
+    if form.validate_on_submit():
+        handle_form_data(form_to_dict(form))
+        flash('stuff' + form.name.data)
+        return redirect('/index')
+    return render_template('register.html',
+            title = 'Judge Registration',
             form = form,
             **make_context())
 
