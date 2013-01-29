@@ -29,9 +29,10 @@
         <div class="container">
 <!--          <div class="nav-collapse collapse"> -->
             <ul class="nav">
-              <li><a href="http://caurs.org">Thing 1</a></li>
-              <li><a href="http://caurs.org">Thing 2</a></li>
-              <li><a href="http://caurs.org">Thing 3</a></li>
+              <li><a href="/"><img class='logo' src='/img/logo.png' /></a></li>
+              <li><a href="http://caurs.com">Thing 1</a></li>
+              <li><a href="http://caurs.com">Thing 2</a></li>
+              <li><a href="http://caurs.com">Thing 3</a></li>
             </ul>
 <!--          ></div> -->
         </div>
@@ -40,14 +41,10 @@
 
 
     <div class="container the-goods">
-        <div class="row">
-            <div class="span8">
-                {% block content %}
-                <h1>{{ project_name }}</h1>
-                App content goes here.
-                {% endblock content %}
-            </div>
-        </div>
+        {% block content %}
+        <h1>{{ project_name }}</h1>
+        App content goes here.
+        {% endblock content %}
 
         <div id="footer" class="row">
             <div class="span12">

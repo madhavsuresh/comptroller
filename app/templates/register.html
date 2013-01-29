@@ -1,93 +1,19 @@
 {% extends "_base.html" %}
 {% block content %}
-    <div class='intro'>
-      <img class='logo' src='/img/logo.png' />
-      <h1>Register for CAURS 2013</h1>
-      <div class='role'>
-        Student
-      </div>
-      <div class='details'>
-        <span class='date'>April 6, 2013</span>
-        <span class='location'>Illinois Institute of Technology</span>
-        <span class='map'><a href='https://maps.google.com/maps?ie=UTF-8&gl=us&daddr=3360+S+State+St,+Chicago,+IL+60616&panel=1&f=d&fb=1&dirflg=d&geocode=0,41.834038,-87.625680&cid=0,0,10505741682962296602&hq=illinois+institute+of+technology&hnear=illinois+institute+of+technology&ei=tu34ULfLCKq30AGdkoDoDg&ved=0CKYBEPUX'>Get directions &rarr;</a></span>
-      </div>
-      <div class='blurb'>
-        The Chicago Area Undergraduate Research Symposium (CAURS) is one of the largest annual undergraduate research conferences in the country, bringing together hundreds of undergraduate students in the Chicagoland area from all academic disciplines to present their research and explore work that is being done by other students. Through poster presentations, oral presentations, and roundtable discussions, attendees experience the impressive breadth and depth of research being conducted by their peers and network with other undergraduates, graduate students, faculty, and representatives from industry and graduate and professional schools.
+    <div class="row">
+      <div class='intro span9 offset1'>
+        <h1>{{ title }}</h1>
       </div>
     </div>
 
-
     <div class='row'>
-      <div class='reg-form span9'>
+      <div class='reg-form span9 offset1'>
         <div class='row'>
-          <div class='span6'>
-            <form action="" method="post" name="register">
-                {{form.hidden_tag()}}
-                <p>
-                First Name: <br>
-                {{form.fname(size=80)}}<br>
-                {% for error in form.errors.name %}
-                <span style="color: red;">[{{error}}]</span>
-                <br>
-                {% endfor %}
-
-                Last Name: <br>
-                {{form.fname(size=80)}}<br>
-                {% for error in form.errors.name %}
-                <span style="color: red;">[{{error}}]</span>
-                <br>
-                {% endfor %}
-
-                Email: <br>
-                {{form.email(size=80)}}<br>
-                {% for error in form.errors.email %}
-                <span style="color: red;">[{{error}}]</span>
-                <br>
-                {% endfor %}
-
-                Confirm Email: <br>
-                {{form.confirm_email(size=80)}}<br>
-                {% for error in form.errors.confirm_email %}
-                <span style="color: red;">[{{error}}]</span>
-                {% endfor %} <br>
-
-                Institution: <br>
-                {{form.institution()}}<br>
-                {% for error in form.errors.Institution %}
-                <span style="color: red;">[{{error}}]</span>
-                {% endfor %} <br>
-
-                Major: <br>
-                {{form.major(size=80)}}<br>
-                {% for error in form.errors.major %}
-                <span style="color: red;">[{{error}}]</span>
-                {% endfor %} <br>
-
-                Year: <br>
-                {{form.year(size=4)}}<br>
-                {% for error in form.errors.year %}
-                <span style="color: red;">[{{error}}]</span>
-                {% endfor %} <br>
-
-                Discipline: <br>
-                {{form.discipline()}}<br>
-                {% for error in form.errors.discipline %}
-                <span style="color: red;">[{{error}}]</span>
-                {% endfor %} <br>
-                Biological Science Subfield: <br>
-                {{form.bio_subfield()}}
-
-                Abstract Title: <br>
-                {{form.abstract_title(size=100)}}<br>
-                {% for error in form.errors.abstract_title %}
-                <span style="color: red;">[{{error}}]</span>
-                {% endfor %} <br>
-
-                <p><input type="submit" value="Register &rarr;"></p>
-            </form>
+          <div class='span3'>
+            {% include "_form.html" %}
           </div>
 
-          <div class='span3'>
+          <div class='span5 offset1'>
             <ul class='timeline'>
                 <h4>Important Dates</h4>
                 <li>
